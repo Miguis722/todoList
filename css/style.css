@@ -1,0 +1,75 @@
+/* color 1= #143543*/
+
+* {
+    background-color: #143543;
+}
+
+.title,
+.time,
+.placeholder_bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 4rem;
+}
+
+.container h1,
+.time,
+.list {
+    color: #fff;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.8rem;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.list {
+    text-decoration: none;
+    list-style: none;
+}
+
+.to_do_information li{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    gap: 15px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.input_container {
+    display:  flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #fff;
+    color: #000;
+}
+
+.Gotthis {
+    height: 31px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+.placeholder_bar {
+    width: 500px;
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
