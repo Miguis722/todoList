@@ -17,13 +17,23 @@ export const getTarea = () => {
 };
 
 // Añadir nueva tarea
-document.querySelector('.Gotthis').addEventListener('click', () => {
+const addTask = () => {
     const input = document.getElementById('to_do_placeholder');
     const newTask = input.value.trim();
     if (newTask) {
         works.push({ texto: newTask, completado: false });
         getTarea();
         input.value = '';
+    }
+};
+
+// Añadir event listener al botón
+document.querySelector('.Gotthis').addEventListener('click', addTask);
+
+// Añadir event listener para la tecla Enter en el campo de entrada
+document.getElementById('to_do_placeholder').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        addTask();
     }
 });
 
