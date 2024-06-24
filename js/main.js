@@ -1,9 +1,27 @@
 const works = [];
 
-// { texto: 'text_info1', completado: false },
-// { texto: 'text_info2', completado: false }
-// Más tareas aquí...
+// Referencias a los elementos del DOM
+const container = document.querySelector('.container');
+const containerLoading = document.getElementById('onload');
 
+// Función para mostrar el contenedor de carga y ocultar el contenido principal
+const showLoadingScreen = () => {
+    containerLoading.style.display = 'flex'; // Mostrar contenedor de carga
+    container.style.display = 'none'; // Ocultar contenido principal
+};
+
+// Función para ocultar el contenedor de carga y mostrar el contenido principal
+const hideLoadingScreen = () => {
+    containerLoading.style.display = 'none'; // Ocultar contenedor de carga
+    container.style.display = 'block'; // Mostrar contenido principal
+};
+
+// Simular una carga durante 2 segundos (ajustable según necesites)
+setTimeout(() => {
+    hideLoadingScreen(); // Llamar a esta función después de 2 segundos
+}, 2000); // 2000 milisegundos = 2 segundos
+
+// Función para obtener tareas y actualizar la lista
 export const getTarea = () => {
     const resultList = document.getElementById('task_list');
     resultList.innerHTML = works.map((work, index) => `
@@ -38,7 +56,13 @@ document.getElementById('to_do_placeholder').addEventListener('keypress', (e) =>
 });
 
 // Inicializar lista de tareas
-document.addEventListener('DOMContentLoaded', getTarea);
+document.addEventListener('DOMContentLoaded', () => {
+    showLoadingScreen(); // Mostrar el contenedor de carga al principio
+    setTimeout(() => {
+        hideLoadingScreen(); // Ocultar el contenedor de carga después de 2 segundos
+    }, 2000);
+    getTarea(); // Obtener las tareas al cargar la página
+});
 
 // Función para añadir event listeners a los botones después de renderizar la lista
 const addEventListeners = () => {
