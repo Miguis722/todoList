@@ -1,5 +1,5 @@
 // CODIGO PASADO POR GPT PARA EVITAR ERRORES O PROBLEMAS.
-
+import { headers } from "./nav.js";
 
 export const getAllData = async () => {
     console.log("Trayendo todas las tareas...");
@@ -25,3 +25,16 @@ export const getAllData = async () => {
         // Pero dentro de algún proceso pasó algo, mostrara otro error.
     }
 };
+
+export const addTask = async (arg) => {
+    console.log("Creando nueva tarea ...");
+    const url = `https://6674179975872d0e0a950e53.mockapi.io/todoList`; // Link del API de donde sacamos la info
+    const config = {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(arg)
+    };
+    let res = await fetch (url, config);
+    let data = await res.json();
+    return data;
+}
