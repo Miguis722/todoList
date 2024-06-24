@@ -1,29 +1,27 @@
-//Suponiendo que 'users' es una variable que contiene la lista de usuarios
-const works = [
-    {texto: 'text_info1', botón1: "✔", botón2: "🗑️"},
-    {texto: 'text_info2', botón1: "✔", botón2: "🗑️"}
-    // Más usuarios aquí...
-];
+const works = [];
+
+// { texto: 'text_info1', completado: false },
+// { texto: 'text_info2', completado: false }
+// Más tareas aquí...
 
 export const getTarea = () => {
-    resultList.innerHTML = works.map(work
-    /*HTML*/`<li>
-                <p>${work.info}</p>
-                <button class="check_button">✔</button>
-                <button class="trash_button">🗑️</button>
-            </li>
-`).join('');
+    const resultList = document.getElementById('task_list');
+    resultList.innerHTML = works.map((work, index) => `
+        <li>
+            <p class="${work.completado ? 'completed' : ''}">${work.texto}</p>
+            <button class="check_button" data-index="${index}">✔</button>
+            <button class="trash_button" data-index="${index}">🗑️</button>
+        </li>
+    `).join('');
+    addEventListeners();
 };
-
-// Llamada de la función getTarea
-getTarea();
 
 // Añadir nueva tarea
 document.querySelector('.Gotthis').addEventListener('click', () => {
     const input = document.getElementById('to_do_placeholder');
     const newTask = input.value.trim();
     if (newTask) {
-        works.push({ texto: newTask });
+        works.push({ texto: newTask, completado: false });
         getTarea();
         input.value = '';
     }
@@ -31,3 +29,22 @@ document.querySelector('.Gotthis').addEventListener('click', () => {
 
 // Inicializar lista de tareas
 document.addEventListener('DOMContentLoaded', getTarea);
+
+// Función para añadir event listeners a los botones después de renderizar la lista
+const addEventListeners = () => {
+    document.querySelectorAll('.check_button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            works[index].completado = !works[index].completado;
+            getTarea();
+        });
+    });
+
+    document.querySelectorAll('.trash_button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            works.splice(index, 1);
+            getTarea();
+        });
+    });
+};
