@@ -1,8 +1,16 @@
+// Importamos de petitions...
+import { getAllTasks, addTask, updateTask, getTaskById  } from "./components/petitions.js";
+
 const works = [];
 
 // Referencias a los elementos del DOM
 const container = document.querySelector('.container');
 const containerLoading = document.getElementById('onload');
+
+// Hacemos la función de DOM...
+const buttongotthis = document.querySelector(".Gotthis");
+const to_do_placeholder_bar = document.querySelector("#to_do_placeholder");
+
 
 // Función para mostrar el contenedor de carga y ocultar el contenido principal
 const showLoadingScreen = () => {
@@ -19,7 +27,7 @@ const hideLoadingScreen = () => {
 // Simular una carga durante 2 segundos (ajustable según necesites)
 setTimeout(() => {
     hideLoadingScreen(); // Llamar a esta función después de 2 segundos
-}, 2000); // 2000 milisegundos = 2 segundos
+}, 1000); // 2000 milisegundos = 2 segundos
 
 // Función para obtener tareas y actualizar la lista
 export const getTarea = () => {
@@ -40,7 +48,7 @@ const addTask = () => {
     const newTask = input.value.trim();
     if (newTask) {
         works.push({ texto: newTask, completado: false });
-        getTarea();
+        getAllTasks(); // Obtener las tareas al cargar la página
         input.value = '';
     }
 };
@@ -61,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         hideLoadingScreen(); // Ocultar el contenedor de carga después de 2 segundos
     }, 2000);
-    getTarea(); // Obtener las tareas al cargar la página
+    getAllTasks(); // Obtener las tareas al cargar la página
 });
 
 // Función para añadir event listeners a los botones después de renderizar la lista
@@ -70,7 +78,7 @@ const addEventListeners = () => {
         button.addEventListener('click', (e) => {
             const index = e.target.getAttribute('data-index');
             works[index].completado = !works[index].completado;
-            getTarea();
+            getAllTasks(); // Obtener las tareas al cargar la página
         });
     });
 
@@ -78,7 +86,7 @@ const addEventListeners = () => {
         button.addEventListener('click', (e) => {
             const index = e.target.getAttribute('data-index');
             works.splice(index, 1);
-            getTarea();
+            getAllTasks(); // Obtener las tareas al cargar la página
         });
     });
 };
