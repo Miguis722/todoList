@@ -2,6 +2,7 @@
 
 * {
     background-color: #143543;
+    box-sizing: border-box;
 }
 
 .title,
@@ -25,10 +26,8 @@
 .list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 15px;
     font-size: 1.8rem;
-    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -39,37 +38,46 @@
 
 .to_do_information {
     overflow-y: scroll;
-    height: 70vh;
+    height: 65vh;
 }
 
-.to_do_information li{
+.to_do_information li {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.56);
     gap: 15px;
     height: 50px;
     border-radius: 50px;
     width: 400px;
+    padding: 0 15px;
 }
+
 .to_do_information li p {
+    margin: 0;
+    flex-grow: 1;
+    text-align: left;
     background: none;
+    color: #fff;
 }
 
 .input_container {
-    display:  flex;
+    display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 button {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #fff;
     color: #000;
-    border-radius: 100%;
+    border-radius: 50%;
     height: 45px;
+    width: 45px;
+    border: none;
+    cursor: pointer;
 }
 
 button:hover {
@@ -77,13 +85,11 @@ button:hover {
 }
 
 .Gotthis {
-    height: 31px;
-    display: flex;
-    align-items: center;
-    border-radius: 0%;
+    height: 25px;
+    width: 100px;
+    border-radius: 0;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-
 }
 
 .placeholder_bar {
@@ -93,4 +99,11 @@ button:hover {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     color: #fff;
+    padding: 10px;
+}
+
+button.check_button,
+button.trash_button {
+    margin-left: 10px;
+    padding: 5px 10px;
 }
